@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const Restaurant = require('../../models/restaurant.js') //Import restaurant model
+const Record = require('../../models/record')
 
-//Create new restaurant
+//Create new record
 router.get('/new', (req, res) => {
   res.render('new')
 })
