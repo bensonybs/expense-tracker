@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "日光燈管",
+    "amount": 90,
+    "category_id": 1,
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "name": "高鐵票",
+    "amount": 1350,
+    "category_id": 2,
+    "user_id": 1
+  },
+  {
+    "id": 3,
+    "name": "劍湖山樂園",
+    "amount": 499,
+    "category_id": 3,
+    "user_id": 1
+  },
+  {
+    "id": 4,
+    "name": "夏慕尼鐵板燒",
+    "amount": 1200,
+    "category_id": 4,
+    "user_id": 1
+  },
+  {
+    "id": 5,
+    "name": "車禍賠款",
+    "amount": 9000,
+    "category_id": 5,
+    "user_id": 1
+  },
+  {
+    "id": 6,
+    "name": "上繳老婆",
+    "amount": 10000,
+    "category_id": 5,
+    "user_id": 1
+  }
+]
