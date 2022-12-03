@@ -1,0 +1,36 @@
+{
+  "name": "2_3_s2_restaurant_list",
+  "version": "1.0.0",
+  "description": "A list which user can search for restaurant and see detail imfomation of it.   \r This is a express web app from [AlphaCamp](https://tw.alphacamp.co/).   \r ## Demo\r ![demo](/public/image/demo.gif)\r You can also see the websit in [Replit](https://replit.com/@bensonybs/restaurantlist).\r ## Features\r - Searching restaurants in both English and Chinese  name.\r ## Getting Start\r ### Prerequisite\r 1. [Node.js](https://nodejs.org/en/), v14.16.0\r 2. (Optional) [nodemon](https://www.npmjs.com/package/nodemon) (2.0.20)\r ### Download\r 1. Clone this repo in local,   \r    `git clone https://github.com/bensonybs/restaurant_list.git`\r 2. Open terminal in the project directory, type `npm install` to install needed packages.\r 2. Type `npm run dev` or `node app.js` if you didn't install nodemon.\r 3. Go to [http://localhost:3000](http://localhost:3000) in the browser to see the website.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node models/seeds/restaurantSeeder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bensonybs/restaurant_list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bensonybs/restaurant_list/issues"
+  },
+  "homepage": "https://github.com/bensonybs/restaurant_list#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^4.0.2",
+    "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.7",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

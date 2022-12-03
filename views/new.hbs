@@ -1,0 +1,64 @@
+<form action="/restaurants" method="post" id="new_restaurant">
+  <h1 class="mb-1 restaurant-show-title">
+    <label for="restaurant_name">餐廳名稱：</label><input type="text" name="name" id="restaurant_name" required>
+  </h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-10 mx-auto">
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-utensils pr-2"></i>
+            <label for="restaurant_category">類別：</label>
+          </span>
+          <input type="text" name="category" id="restaurant_category">
+          <span class="text-secondary">
+            <i class="fas fa-image pr-2"></i>
+            <label for="restaurant_image">餐廳圖片網址：</label>
+          </span>
+          <input type="url" name="image" id="restaurant_image">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-map-marker-alt pr-2"></i>
+            <label for="restaurant_location">地址：</label>
+          </span>
+          <input type="text" name="location" id="restaurant_location">
+          <span class="text-secondary">
+            <i class="fas fa-location-arrow pr-2 fa-xs"></i>
+            <label for="restaurant_google_map">GoogleMap 網址：</label>
+          </span>
+          <input type="url" name="google_map" id="restaurant_google_map">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-mobile-alt pr-2"></i>
+            <label for="restaurant_phone">電話：</label>
+          </span>
+          <input type="tel" name="phone" id="restaurant_phone">
+          <span class="text-secondary">
+            <i class="fas fa-globe-americas pr-2"></i>
+            <label for="restaurant_name_en">餐廳英文名稱：</label>
+          </span>
+          <input type="text" name="name_en" id="restaurant_name_en">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-thumbs-up pr-2"></i>
+            <label for="restaurant_rating">評分：</label>
+          </span>
+          <input type="number" name="rating" id="restaurant_rating" max="5" min="0" step="0.1">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-store pr-2 fa-xs"></i>
+            <label for="restaurant_description">介紹：</label>
+          </span>
+          <textarea name="description" id="restaurant_description" cols="70" rows="2" form="new_restaurant"></textarea>
+        </p>
+        <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
+          style="max-width: 600px;">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center m-2"><button type="submit">儲存餐廳</button></div>
+  </div>
+</form>
