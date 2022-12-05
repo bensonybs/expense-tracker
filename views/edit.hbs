@@ -27,9 +27,9 @@
         </label>
       </div>
       <div class="col-3">
-        <select name="categoryId" value="{{record.categoryId}}" id="record_category" required>
+        <select name="categoryId" id="record_category" required>
           {{#each categories as |alias|}}
-          <option value="{{this._id}}">{{this.name}}</option>
+          <option value="{{this._id}}" {{#if category.belongsTo}} selected {{/if}}>{{this.name}}</option>
           {{/each}}
         </select>
       </div>

@@ -6,9 +6,9 @@
           篩選類別
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">家用</a></li>
-          <li><a class="dropdown-item" href="#">其他</a></li>
-          <li><a class="dropdown-item" href="#">娛樂</a></li>
+          {{#each categories as |alias|}}
+            <li><a class="dropdown-item" href="/?filter={{this._id}}">{{this.name}}</a></li>
+          {{/each}}
         </ul>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <tbody>
       {{#each records as |alias|}}
       <tr>
-        <td>{{this.categoryId}}</td>
+        <td><img src="{{this.categoryIcon}}" alt="{{this.categoryName}}"></td>
         <td>
           <div>{{this.name}}</div>
           <div>{{this.date}}</div>

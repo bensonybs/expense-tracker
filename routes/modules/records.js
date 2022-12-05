@@ -23,9 +23,15 @@ router.post('/', (req, res) => {
 router.get('/:record_id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.record_id
-  Record.findOne({ _id, userId })
-    .lean()
-    .then(record => res.render('edit', { record }))
+  Promise.all([
+    Category.find().lean(),
+    Record.findOne({ _id, userId }).lean()
+  ])
+    .then(([categories, record]) => {
+      const dateFormater = new Intl.DateTimeFormat('sv-SE')
+      record.date = dateFormater.format(record.date).toString()
+      res.render('edit', { categories, record })
+    })
     .catch(error => console.log(error))
 })
 router.put('/:record_id', (req, res) => {
@@ -50,6 +56,5 @@ router.delete('/:record_id', (req, res) => {
     })
     .catch(error => console.log(error))
 })
-
 
 module.exports = router
