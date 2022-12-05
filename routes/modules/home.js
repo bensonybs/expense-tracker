@@ -8,9 +8,18 @@ router.get('/', (req, res) => {
   const categoryId = req.query.filter
   const userId = req.user._id
   const query = categoryId ? { userId, categoryId } : { userId }
-  console.log(query)
-  return Promise.all([
-    Record.find(query).lean().sort({ '_id': 'asc' }),
+  Promise.all([
+    Record.aggregate([
+      { $match:  query  },
+      {
+        $lookup: {
+          from: "categories",
+          localField: "categoryId",
+          foreignField: "_id",
+          as: "category"
+        }
+      }
+    ]).sort({ '_id': 'asc' }),
     Category.find().lean()
   ])
     .then(([records, categories]) => {
@@ -23,30 +32,13 @@ router.get('/', (req, res) => {
       records.map(record => {
         record.date = dateFormater.format(record.date)
         record.amount = numFormatter.format(record.amount)
+        record.category = record.category[0].name
+        record.categoryIcon = record.category[0].icon
       })
       // Response
       res.render('index', { records, totalAmount, categories })
     })
     .catch(error => console.log(error))
-  })
-  router.get('/test', (req, res, next) => {
-    Record.aggregate([
-      {
-        $lookup: {
-          from: "categories",
-          as: "categoryy",
-          let: {categoryId: "$_id"},
-          pipeline: [
-            {$match: {$expr: {$eq: ['$categoryId', '$$categoryId']}}}
-          ]
-        }
-      },
-      { $project: {
-        _id: 1,
-        name: 1,
-        amount: 1,
-      }}
-    ]).then(result => console.log(result))
-  })
+})
 
-  module.exports = router
+module.exports = router

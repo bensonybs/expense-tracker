@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
-// Update record
+// Update record page
 router.get('/:record_id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.record_id
@@ -39,7 +39,12 @@ router.put('/:record_id', (req, res) => {
   const _id = req.params.record_id
   Record.findOne({ _id, userId })
     .then(record => {
-      record = req.body
+      console.log(record)
+      console.log(req.body)
+      record.name = req.body.name
+      record.amount = req.body.amount
+      record.categoryId = req.body.categoryId
+      record.date = req.body.date
       return record.save()
     })
     .then(() => res.redirect(`/`))
