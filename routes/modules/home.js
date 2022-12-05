@@ -29,6 +29,24 @@ router.get('/', (req, res) => {
     })
     .catch(error => console.log(error))
   })
-  
+  router.get('/test', (req, res, next) => {
+    Record.aggregate([
+      {
+        $lookup: {
+          from: "categories",
+          as: "categoryy",
+          let: {categoryId: "$_id"},
+          pipeline: [
+            {$match: {$expr: {$eq: ['$categoryId', '$$categoryId']}}}
+          ]
+        }
+      },
+      { $project: {
+        _id: 1,
+        name: 1,
+        amount: 1,
+      }}
+    ]).then(result => console.log(result))
+  })
 
   module.exports = router
