@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const category = require('../../models/category')
 
 //Get all records
 router.get('/', (req, res) => {
@@ -9,17 +10,7 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   const query = categoryId ? { userId, categoryId } : { userId }
   Promise.all([
-    Record.aggregate([
-      { $match:  query  },
-      {
-        $lookup: {
-          from: "categories",
-          localField: "categoryId",
-          foreignField: "_id",
-          as: "category"
-        }
-      }
-    ]).sort({ '_id': 'asc' }),
+    Record.find(query).lean(),
     Category.find().lean()
   ])
     .then(([records, categories]) => {
@@ -32,13 +23,15 @@ router.get('/', (req, res) => {
       records.map(record => {
         record.date = dateFormater.format(record.date)
         record.amount = numFormatter.format(record.amount)
-        record.category = record.category[0].name
-        record.categoryIcon = record.category[0].icon
+        const category = categories.find(category => {
+          return category._id.equals(record.categoryId)
+        })
+        record.category = category.name
+        record.categoryIcon = category.icon
       })
       // Response
       res.render('index', { records, totalAmount, categories })
     })
-    .catch(error => console.log(error))
+    .catch(err => console.log(err))
 })
-
 module.exports = router

@@ -6,6 +6,7 @@
         篩選類別
       </button>
       <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/?filter=">全部</a></li>
         {{#each categories as |alias|}}
         <li><a class="dropdown-item" href="/?filter={{this._id}}">{{this.name}}</a></li>
         {{/each}}
@@ -34,7 +35,7 @@
       {{#each records as |alias|}}
       <tr>
         <td>
-          <div>{{this.category}}</div>
+          <div>{{{this.categoryIcon}}}</div>
         </td>
         <td>
           <div>{{this.name}}</div>
